@@ -1,0 +1,173 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    * {
+        font-family: "El Messiri", sans-serif;
+    }
+
+    .main {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .main::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-image: url('../images/ahcBg.jpg');
+        background-size: cover;
+        background-position: left top;
+        transform-origin: left top;
+        z-index: -1;
+        animation: zoomIn 1.8s 2s ease forwards;
+    }
+
+
+    @keyframes zoomIn {
+        0% {
+            transform: scale(1);
+        }
+
+        100% {
+            transform: scale(1.7);
+        }
+    }
+
+    .carousel-container {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .owl-carousel .owl-stage {
+        display: flex;
+    }
+
+    .owl-carousel .owl-item {
+        flex-shrink: 0;
+        width: 220px !important;
+        margin-right: 10px;
+    }
+
+
+    .navEL {
+        /* color: aliceblue; */
+        position: relative;
+        text-decoration: none;
+        transition: color 0.3s ease-in-out;
+
+    }
+
+    .navEL::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background-color: #D2BC93;
+        bottom: 0;
+        left: 0;
+        transform-origin: right;
+        transform: scaleX(0);
+        transition: transform .3s ease-in-out;
+    }
+
+    .navEL:hover {
+        color: rgb(210, 188, 147);
+    }
+
+    .navEL:hover::before {
+        transform-origin: left;
+        transform: scaleX(1);
+    }
+
+    .navEL:not(:hover)::before {
+        transform-origin: right;
+        transform: scaleX(0);
+    }
+
+    /* testing */
+    .bg-half {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        opacity: 0;
+        transform: translateY(100px);
+        transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .bg-half.animated {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .animated.demo {
+        animation: demo .5s ease forwards;
+        /* opacity: 1; */
+    }
+
+    @keyframes demo {
+        0% {
+            opacity: 0.1;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    .animated.from-left {
+        animation: slideInLeft .9s forwards;
+        opacity: 1;
+    }
+
+    .animated.from-right {
+        animation: slideInRight .9s forwards;
+        opacity: 1;
+    }
+
+    .from-left {
+        opacity: 0;
+    }
+
+    .from-right {
+        opacity: 0;
+    }
+
+    @keyframes slideInLeft {
+        from {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideInRight {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+}
+
+@layer utilities {
+    .before\\:animate-zoomIn::before {
+        animation: zoomIn 2s 3.2s ease forwards;
+    }
+}
